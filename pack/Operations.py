@@ -1,9 +1,9 @@
 import tkinter as tk
 import numpy as nm
-from pack.SizeChooser import SizeChooser
-from pack.Tables import TableResult
-from pack.Tables import SimpleTableInput
-from pack.Tables import update_matrix
+from SizeChooser import SizeChooser
+from Tables import TableResult
+from Tables import SimpleTableInput
+from Tables import update_matrix
 
 LARGE_FONT = ("Verdana", 12)
 

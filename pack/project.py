@@ -1,6 +1,6 @@
 import tkinter as tk
-from pack.Operations import Mult
-from pack.Operations import StartPage
+from Operations import Mult
+from Operations import StartPage
 
 class Calc(tk.Tk):
 
