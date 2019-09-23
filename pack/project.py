@@ -1,6 +1,7 @@
 import tkinter as tk
 import numpy as nm
 from pack.SizeChooser import SizeChooser
+from pack.Operations import *
 LARGE_FONT = ("Verdana", 12)
 
 
