@@ -1,6 +1,6 @@
 import tkinter as tk
 import numpy as nm
-
+from pack.SizeChooser import SizeChooser
 LARGE_FONT = ("Verdana", 12)
 
 
@@ -19,9 +19,7 @@ class Calc(tk.Tk):
 
         for F in (StartPage, Mult):
             frame = F(container, self)
-
             self.frames[F] = frame
-
             frame.grid(row=0, column=0, sticky="nsew")
 
         self.show_frame(StartPage)
@@ -92,17 +90,6 @@ class SimpleTableInput(tk.Frame):
             return False
         return True
 
-
-class SizeChooser(tk.Frame):
-
-    def __init__(self, parent):
-        tk.Frame.__init__(self, parent)
-        self.rows = tk.Entry(self)
-        self.rows.grid(row=0, column=0)
-        label = tk.Label(self, text=" x ", font=LARGE_FONT)
-        label.grid(row=0, column=1)
-        self.columns = tk.Entry(self)
-        self.columns.grid(row=0, column=2)
 
 
 class StartPage(tk.Frame):
@@ -180,8 +167,6 @@ class Mult(tk.Frame):
                 second.append(self.table_2.get()[i][j])
         m2 = nm.array(second, dtype=float).reshape(self.table_2.rows, self.table_2.columns);
         result = nm.dot(m1, m2);
-        # matrix2 = nm.asmatrix(m2);
-        # print (nm.dot(matrix1, matrix2))
         self.table_r = TableResult(self, result.shape[0], result.shape[1], result)
         # print(result.shape[0])
 '''
