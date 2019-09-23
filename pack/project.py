@@ -1,6 +1,6 @@
 import tkinter as tk
 import numpy as nm
-
+from pack.SizeChooser import SizeChooser
 LARGE_FONT = ("Verdana", 12)
 
 
@@ -19,9 +19,7 @@ class Calc(tk.Tk):
 
         for F in (StartPage, Mult):
             frame = F(container, self)
-
             self.frames[F] = frame
-
             frame.grid(row=0, column=0, sticky="nsew")
 
         self.show_frame(StartPage)
@@ -37,12 +35,16 @@ class TableResult(tk.Frame):
         self.rows = rows
         self.columns = columns
         self._entry = {}
+        #vcmd = (self.register(self._validate), "%P")
         for r in range(self.rows):
             for c in range(self.columns):
-                e = tk.Entry(self)
                 index = (r, c)
+                e = tk.Entry(self, validate="key")
+                e.grid(row=r, column=c, stick="nsew")
                 e.insert(0, result[r][c])
                 self._entry[index] = e
+
+
 
 
 class SimpleTableInput(tk.Frame):
@@ -93,17 +95,6 @@ class SimpleTableInput(tk.Frame):
         return True
 
 
-class SizeChooser(tk.Frame):
-
-    def __init__(self, parent):
-        tk.Frame.__init__(self, parent)
-        self.rows = tk.Entry(self)
-        self.rows.grid(row=0, column=0)
-        label = tk.Label(self, text=" x ", font=LARGE_FONT)
-        label.grid(row=0, column=1)
-        self.columns = tk.Entry(self)
-        self.columns.grid(row=0, column=2)
-
 
 class StartPage(tk.Frame):
 
@@ -150,7 +141,7 @@ class Mult(tk.Frame):
 
         self.result = tk.Button(self, text="Submit", command=self.get_result)
         self.result.grid(row=5, column=1)
-        # self.table_r = TableResult(self, self.result.size, self.result.size. self.result)
+        #self.table_r = TableResult(self, self.get_result, self.get_result, self.get_result())
         mult_symbol = tk.Label(self, text="X", font=LARGE_FONT)
         mult_symbol.grid(row=4, column=1)
 
@@ -179,10 +170,15 @@ class Mult(tk.Frame):
             for j in range(self.table_2.columns):
                 second.append(self.table_2.get()[i][j])
         m2 = nm.array(second, dtype=float).reshape(self.table_2.rows, self.table_2.columns);
-        result = nm.dot(m1, m2);
-        # matrix2 = nm.asmatrix(m2);
-        # print (nm.dot(matrix1, matrix2))
-        self.table_r = TableResult(self, result.shape[0], result.shape[1], result)
+        result = nm.dot(m1, m2)
+        #return result
+
+        self.result = TableResult(self, result.shape[0], result.shape[1], result)
+            #SimpleTableInput(self, result.shape[0], result.shape[1])
+
+        self.result.grid(row=5, column=1)
+        #self.table_r = TableResult(self, result.shape[0], result.shape[1], result)
+        #self.table_r = TableResult(self, result.shape[0], result.shape[1], result)
         # print(result.shape[0])
 '''
 class PageTwo(tk.Frame):
