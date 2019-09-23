@@ -1,17 +1,16 @@
 import tkinter as tk
+import numpy as nm
 
-
-LARGE_FONT= ("Verdana", 12)
+LARGE_FONT = ("Verdana", 12)
 
 
 class Calc(tk.Tk):
 
     def __init__(self, *args, **kwargs):
-        
         tk.Tk.__init__(self, *args, **kwargs)
         container = tk.Frame(self)
 
-        container.pack(side="top", fill="both", expand = True)
+        container.pack(side="top", fill="both", expand=True)
 
         container.grid_rowconfigure(0, weight=1)
         container.grid_columnconfigure(0, weight=1)
@@ -19,7 +18,6 @@ class Calc(tk.Tk):
         self.frames = {}
 
         for F in (StartPage, Mult):
-
             frame = F(container, self)
 
             self.frames[F] = frame
@@ -29,21 +27,32 @@ class Calc(tk.Tk):
         self.show_frame(StartPage)
 
     def show_frame(self, cont):
-
         frame = self.frames[cont]
         frame.tkraise()
+
+
+class TableResult(tk.Frame):
+    def __init__(self, parent, rows, columns, result):
+        tk.Frame.__init__(self, parent)
+        self.rows = rows
+        self.columns = columns
+        self._entry = {}
+        for r in range(self.rows):
+            for c in range(self.columns):
+                e = tk.Entry(self)
+                index = (r, c)
+                e.insert(0, result[r][c])
+                self._entry[index] = e
+
 
 class SimpleTableInput(tk.Frame):
     def __init__(self, parent, rows, columns):
         tk.Frame.__init__(self, parent)
-
         self._entry = {}
         self.rows = rows
         self.columns = columns
-
         # register a command to use for validation
         vcmd = (self.register(self._validate), "%P")
-
         # create the table of widgets
         for row in range(self.rows):
             for column in range(self.columns):
@@ -69,7 +78,7 @@ class SimpleTableInput(tk.Frame):
         return result
 
     def _validate(self, P):
-        '''Perform input validation. 
+        '''Perform input validation.
 
         Allow only an empty value, or a value that can be converted to a float
         '''
@@ -85,27 +94,27 @@ class SimpleTableInput(tk.Frame):
 
 
 class SizeChooser(tk.Frame):
-    
+
     def __init__(self, parent):
-        tk.Frame.__init__(self,parent)
+        tk.Frame.__init__(self, parent)
         self.rows = tk.Entry(self)
-        self.rows.grid(row=0,column=0)
+        self.rows.grid(row=0, column=0)
         label = tk.Label(self, text=" x ", font=LARGE_FONT)
-        label.grid(row=0,column=1)
+        label.grid(row=0, column=1)
         self.columns = tk.Entry(self)
-        self.columns.grid(row=0,column=2)
+        self.columns.grid(row=0, column=2)
 
 
 class StartPage(tk.Frame):
 
     def __init__(self, parent, controller):
-        tk.Frame.__init__(self,parent)
+        tk.Frame.__init__(self, parent)
         label = tk.Label(self, text="Start Page", font=LARGE_FONT)
-        label.grid(row=0,column=0)
+        label.grid(row=0, column=0)
 
         button = tk.Button(self, text="Multiple",
-                            command=lambda: controller.show_frame(Mult))
-        button.grid(row=1,column=0)
+                           command=lambda: controller.show_frame(Mult))
+        button.grid(row=1, column=0)
         '''
         button2 = tk.Button(self, text="Visit Page 2",
                             command=lambda: controller.show_frame(PageTwo))
@@ -118,17 +127,17 @@ class Mult(tk.Frame):
         tk.Frame.__init__(self, parent)
         label = tk.Label(self, text="A x B", font=LARGE_FONT)
         label.grid(row=0, column=1)
-        
+
         size_A = label = tk.Label(self, text="Size A", font=LARGE_FONT)
         size_A.grid(row=1, column=0)
         size_B = label = tk.Label(self, text="Size B", font=LARGE_FONT)
         size_B.grid(row=1, column=2)
-        
+
         self.size_1 = SizeChooser(self)
         self.size_1.grid(row=2, column=0)
         self.size_2 = SizeChooser(self)
         self.size_2.grid(row=2, column=2)
-        
+
         self.table_1 = SimpleTableInput(self, 2, 2)
         self.table_1.grid(row=4, column=0)
         self.table_2 = SimpleTableInput(self, 2, 2)
@@ -141,13 +150,13 @@ class Mult(tk.Frame):
 
         self.result = tk.Button(self, text="Submit", command=self.get_result)
         self.result.grid(row=5, column=1)
+        # self.table_r = TableResult(self, self.result.size, self.result.size. self.result)
         mult_symbol = tk.Label(self, text="X", font=LARGE_FONT)
         mult_symbol.grid(row=4, column=1)
 
         button1 = tk.Button(self, text="Back to Home",
                             command=lambda: controller.show_frame(StartPage))
         button1.grid(row=6, column=1)
-
 
     def update_matrix(self, matrix):
         if matrix == 'A':
@@ -160,13 +169,21 @@ class Mult(tk.Frame):
             self.table_2.grid(row=4, column=2)
 
     def get_result(self):
-        #proceed
-        print(self.table.get())
-        '''
-        button2 = tk.Button(self, text="Page Two",
-                            command=lambda: controller.show_frame(PageTwo))
-        button2.pack()'''
-
+        first = []
+        for i in range(self.table_1.rows):
+            for j in range(self.table_1.columns):
+                first.append(self.table_1.get()[i][j])
+        m1 = nm.array(first, dtype=float).reshape(self.table_1.rows, self.table_1.columns);
+        second = []
+        for i in range(self.table_2.rows):
+            for j in range(self.table_2.columns):
+                second.append(self.table_2.get()[i][j])
+        m2 = nm.array(second, dtype=float).reshape(self.table_2.rows, self.table_2.columns);
+        result = nm.dot(m1, m2);
+        # matrix2 = nm.asmatrix(m2);
+        # print (nm.dot(matrix1, matrix2))
+        self.table_r = TableResult(self, result.shape[0], result.shape[1], result)
+        # print(result.shape[0])
 '''
 class PageTwo(tk.Frame):
 
@@ -180,8 +197,7 @@ class PageTwo(tk.Frame):
         button1.pack()
 
 
-'''        
-
+'''
 
 app = Calc()
 app.mainloop()
