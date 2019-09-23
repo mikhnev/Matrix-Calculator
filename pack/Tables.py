@@ -1,5 +1,17 @@
 import tkinter as tk
 
+
+def update_matrix(self, matrix):
+    if matrix == 'A':
+        self.table_1.destroy()
+        self.table_1 = SimpleTableInput(self, int(self.size_1.rows.get()), int(self.size_1.columns.get()))
+        self.table_1.grid(row=4, column=0)
+    else:
+        self.table_2.destroy()
+        self.table_2 = SimpleTableInput(self, int(self.size_2.rows.get()), int(self.size_2.columns.get()))
+        self.table_2.grid(row=4, column=2)
+
+
 class TableResult(tk.Frame):
     def __init__(self, parent, rows, columns, result):
         tk.Frame.__init__(self, parent)
