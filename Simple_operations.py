@@ -18,3 +18,6 @@ def do_det(x):
 
 def do_inv(x):
     return nm.linalg.inv(x)
+
+def do_pow(x, n):
+    return nm.linalg.matrix_power(x, n)

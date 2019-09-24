@@ -38,6 +38,11 @@ class Calc(tk.Tk):
             self.frames[F] = frame
             frame.grid(row=0, column=0, sticky="nsew")
 
+        for F in (StartPage, Power):
+            frame = F(container, self)
+            self.frames[F] = frame
+            frame.grid(row=0, column=0, sticky="nsew")
+
         self.show_frame(StartPage)
 
     def show_frame(self, cont):

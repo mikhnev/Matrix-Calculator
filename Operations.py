@@ -31,7 +31,9 @@ class StartPage(tk.Frame):
         button = tk.Button(self, text="Inverse",
                            command=lambda: controller.show_frame(Inverse))
         button.grid(row=6, column=0)
-
+        button = tk.Button(self, text="Power",
+                           command=lambda: controller.show_frame(Power))
+        button.grid(row=7, column=0)
 
 class Determinant(tk.Frame):
 
@@ -141,6 +143,52 @@ class Inverse(tk.Frame):
                 first.append(self.table_1.get()[i][j])
         m1 = nm.array(first, dtype=float).reshape(self.table_1.rows, self.table_1.columns);
         result =  (do_inv(m1))
+        self.result = TableResult(self, result.shape[0], result.shape[1], result)
+        self.result.grid(row=5, column=1)
+
+
+class Power(tk.Frame):
+
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        label = tk.Label(self, text="A (Pow)", font=LARGE_FONT)
+        label.grid(row=0, column=1)
+
+        size_A = label = tk.Label(self, text="Size A", font=LARGE_FONT)
+        size_A.grid(row=1, column=0)
+        self.size_1 = SizeChooser(self)
+        self.size_1.grid(row=2, column=0)
+
+        self.table_1 = SimpleTableInput(self, 2, 2)
+        self.table_1.grid(row=4, column=0)
+        self.set_1 = tk.Button(self, text="Set", command=lambda: self.update_matrix('A'))
+        self.set_1.grid(row=3, column=0)
+
+        self.power_label = tk.Label(self, text="Power", font=LARGE_FONT)
+        self.power_label.grid(row=1, column=1)
+        self.npow = tk.Entry(self)
+        self.npow.grid(row=2, column=1)
+        self.set_2 = tk.Button(self, text="Set", command=self.get_pow)
+        self.set_2.grid(row=3, column=1)        
+
+        self.result = tk.Button(self, text="Power", command=self.get_result)
+        self.result.grid(row=6, column=1)
+        
+
+        button1 = tk.Button(self, text="Back to Home",
+                            command=lambda: controller.show_frame(StartPage))
+        button1.grid(row=7, column=1)
+
+    def get_pow(self):
+        self.n = int(self.npow.get())
+
+    def get_result(self):
+        first = []
+        for i in range(self.table_1.rows):
+            for j in range(self.table_1.columns):
+                first.append(self.table_1.get()[i][j])
+        m1 = nm.array(first, dtype=float).reshape(self.table_1.rows, self.table_1.columns);
+        result =  (do_pow(m1, self.n))
         self.result = TableResult(self, result.shape[0], result.shape[1], result)
         self.result.grid(row=5, column=1)
 
