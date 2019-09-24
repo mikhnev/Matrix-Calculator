@@ -10,7 +10,7 @@ class TableResult(tk.Frame):
         for r in range(self.rows):
             for c in range(self.columns):
                 index = (r, c)
-                e = tk.Entry(self, validate="key")
+                e = tk.Entry(self, width=6, validate="key")
                 e.grid(row=r, column=c, stick="nsew")
                 e.insert(0, result[r][c])
                 self._entry[index] = e
@@ -41,7 +41,7 @@ class SimpleTableInput(tk.Frame):
         for row in range(self.rows):
             for column in range(self.columns):
                 index = (row, column)
-                e = tk.Entry(self, validate="key", validatecommand=vcmd)
+                e = tk.Entry(self, width=6, validate="key", validatecommand=vcmd)
                 e.grid(row=row, column=column, stick="nsew")
                 self._entry[index] = e
         # adjust column weights so they all expand equally

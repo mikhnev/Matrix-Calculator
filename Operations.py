@@ -17,29 +17,29 @@ class StartPage(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         label = tk.Label(self, text=_("Start Page"), font=LARGE_FONT)
-        label.grid(row=0, column=0)
+        label.grid(row=0, column=0, columnspan=7, sticky="N")
 
         button = tk.Button(self, text=_("Multiple"),
                            command=lambda: controller.show_frame(Mult))
-        button.grid(row=1, column=1)
+        button.grid(row=1, column=0)
         button = tk.Button(self, text=_("Summarize"),
                            command=lambda: controller.show_frame(Sum))
-        button.grid(row=1, column=2)
+        button.grid(row=1, column=1)
         button = tk.Button(self, text=_("Subtraction"),
                            command=lambda: controller.show_frame(Subtract))
-        button.grid(row=1, column=3)
+        button.grid(row=1, column=2)
         button = tk.Button(self, text=_("Transpose"),
                            command=lambda: controller.show_frame(Transpose))
-        button.grid(row=1, column=4)
+        button.grid(row=1, column=3)
         button = tk.Button(self, text=_("Determinant"),
                            command=lambda: controller.show_frame(Determinant))
-        button.grid(row=1, column=5)
+        button.grid(row=1, column=4)
         button = tk.Button(self, text=_("Inverse"),
                            command=lambda: controller.show_frame(Inverse))
-        button.grid(row=1, column=6)
+        button.grid(row=1, column=5)
         button = tk.Button(self, text=_("Power"),
                            command=lambda: controller.show_frame(Power))
-        button.grid(row=1, column=7)
+        button.grid(row=1, column=6)
 
 class Determinant(tk.Frame):
 
@@ -84,9 +84,11 @@ class Determinant(tk.Frame):
                 first.append(self.table_1.get()[i][j])
         m1 = nm.array(first, dtype=float).reshape(self.table_1.rows, self.table_1.columns);
         result =  (do_det(m1))
-        print (result)
+        #print (result)
+        self.label_result = tk.Label(self, text="Result", font=LARGE_FONT)
+        self.label_result.grid(row=0, column=3, rowspan=2)
         self.result = NumberResult(self, result)
-        self.result.grid(row=5, column=1)
+        self.result.grid(row=1, column=3, rowspan=3, padx=100)
 
 
 class Transpose(tk.Frame):
@@ -132,8 +134,10 @@ class Transpose(tk.Frame):
                 first.append(self.table_1.get()[i][j])
         m1 = nm.array(first, dtype=float).reshape(self.table_1.rows, self.table_1.columns);
         result =  (do_transpose(m1))
+        self.label_result = tk.Label(self, text="Result", font=LARGE_FONT)
+        self.label_result.grid(row=0, column=3, rowspan=3)
         self.result = TableResult(self, result.shape[0], result.shape[1], result)
-        self.result.grid(row=5, column=1)
+        self.result.grid(row=3, column=3, padx=100)
 
 
 class Inverse(tk.Frame):
@@ -179,8 +183,10 @@ class Inverse(tk.Frame):
                 first.append(self.table_1.get()[i][j])
         m1 = nm.array(first, dtype=float).reshape(self.table_1.rows, self.table_1.columns);
         result =  (do_inv(m1))
+        self.label_result = tk.Label(self, text="Result", font=LARGE_FONT)
+        self.label_result.grid(row=0, column=3, rowspan=3)
         self.result = TableResult(self, result.shape[0], result.shape[1], result)
-        self.result.grid(row=5, column=1)
+        self.result.grid(row=3, column=3, padx=100)
 
 
 class Power(tk.Frame):
@@ -211,8 +217,8 @@ class Power(tk.Frame):
         self.set_1.grid(row=3, column=0)
 
         self.power_label = tk.Label(self, text=_("Power"), font=LARGE_FONT)
-        self.power_label.grid(row=1, column=1)
-        self.npow = tk.Entry(self)
+        self.power_label.grid(row=1, column=1, padx=25)
+        self.npow = tk.Entry(self, width=6)
         self.npow.grid(row=2, column=1)
         self.set_2 = tk.Button(self, text=_("Set"), command=self.get_pow)
         self.set_2.grid(row=3, column=1)
@@ -235,8 +241,10 @@ class Power(tk.Frame):
                 first.append(self.table_1.get()[i][j])
         m1 = nm.array(first, dtype=float).reshape(self.table_1.rows, self.table_1.columns);
         result =  (do_pow(m1, self.n))
+        self.label_result = tk.Label(self, text="Result", font=LARGE_FONT)
+        self.label_result.grid(row=0, column=3, rowspan=3)
         self.result = TableResult(self, result.shape[0], result.shape[1], result)
-        self.result.grid(row=5, column=1)
+        self.result.grid(row=3, column=3, padx=100)
 
 
 class Subtract(tk.Frame):
@@ -298,8 +306,10 @@ class Subtract(tk.Frame):
         m2 = nm.array(second, dtype=float).reshape(self.table_2.rows, self.table_2.columns);
         result =  (do_subtract(m1, m2))
         #result = nm.dot(m1, m2)
+        self.label_result = tk.Label(self, text="Result", font=LARGE_FONT)
+        self.label_result.grid(row=0, column=3, rowspan=3)
         self.result = TableResult(self, result.shape[0], result.shape[1], result)
-        self.result.grid(row=5, column=1)
+        self.result.grid(row=3, column=3, padx=100)
 
 
 class Sum(tk.Frame):
@@ -361,8 +371,10 @@ class Sum(tk.Frame):
         m2 = nm.array(second, dtype=float).reshape(self.table_2.rows, self.table_2.columns);
         result =  (do_sum(m1, m2))
         #result = nm.dot(m1, m2)
+        self.label_result = tk.Label(self, text="Result", font=LARGE_FONT)
+        self.label_result.grid(row=0, column=3, rowspan=3)
         self.result = TableResult(self, result.shape[0], result.shape[1], result)
-        self.result.grid(row=5, column=1)
+        self.result.grid(row=3, column=3, padx=100)
 
 
 
@@ -427,5 +439,7 @@ class Mult(tk.Frame):
         m2 = nm.array(second, dtype=float).reshape(self.table_2.rows, self.table_2.columns);
         result =  (do_mult(m1, m2))
         #result = nm.dot(m1, m2)
+        self.label_result = tk.Label(self, text="Result", font=LARGE_FONT)
+        self.label_result.grid(row=0, column=3, rowspan=3)
         self.result = TableResult(self, result.shape[0], result.shape[1], result)
-        self.result.grid(row=5, column=1)
+        self.result.grid(row=3, column=3, padx=100)
