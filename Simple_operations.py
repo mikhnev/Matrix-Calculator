@@ -15,3 +15,6 @@ def do_transpose(x):
 
 def do_det(x):
     return nm.linalg.det(x)
+
+def do_inv(x):
+    return nm.linalg.inv(x)
