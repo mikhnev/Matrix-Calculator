@@ -3,35 +3,41 @@ import numpy as nm
 from SizeChooser import *
 from Tables import *
 from Simple_operations import *
+import gettext
+import os
+import sys
 
 LARGE_FONT = ("Verdana", 12)
+gettext.install(os.path.join(os.path.dirname(__file__)), 'loc')
+gettext.bindtextdomain('', '/loc')
+_ = gettext.gettext
 
 class StartPage(tk.Frame):
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
-        label = tk.Label(self, text="Start Page", font=LARGE_FONT)
+        label = tk.Label(self, text=_("Start Page"), font=LARGE_FONT)
         label.grid(row=0, column=0)
 
-        button = tk.Button(self, text="Multiple",
+        button = tk.Button(self, text=_("Multiple"),
                            command=lambda: controller.show_frame(Mult))
         button.grid(row=1, column=1)
-        button = tk.Button(self, text="Summarize",
+        button = tk.Button(self, text=_("Summarize"),
                            command=lambda: controller.show_frame(Sum))
         button.grid(row=1, column=2)
-        button = tk.Button(self, text="Subtraction",
+        button = tk.Button(self, text=_("Subtraction"),
                            command=lambda: controller.show_frame(Subtract))
         button.grid(row=1, column=3)
-        button = tk.Button(self, text="Transpose",
+        button = tk.Button(self, text=_("Transpose"),
                            command=lambda: controller.show_frame(Transpose))
         button.grid(row=1, column=4)
-        button = tk.Button(self, text="Determinant",
+        button = tk.Button(self, text=_("Determinant"),
                            command=lambda: controller.show_frame(Determinant))
         button.grid(row=1, column=5)
-        button = tk.Button(self, text="Inverse",
+        button = tk.Button(self, text=_("Inverse"),
                            command=lambda: controller.show_frame(Inverse))
         button.grid(row=1, column=6)
-        button = tk.Button(self, text="Power",
+        button = tk.Button(self, text=_("Power"),
                            command=lambda: controller.show_frame(Power))
         button.grid(row=1, column=7)
 
@@ -147,22 +153,22 @@ class Inverse(tk.Frame):
         label = tk.Label(self, text="A (Inv)", font=LARGE_FONT)
         label.grid(row=0, column=1)
 
-        size_A = label = tk.Label(self, text="Size A", font=LARGE_FONT)
+        size_A = label = tk.Label(self, text=_("Size A"), font=LARGE_FONT)
         size_A.grid(row=1, column=0)
         self.size_1 = SizeChooser(self)
         self.size_1.grid(row=2, column=0)
 
         self.table_1 = SimpleTableInput(self, 2, 2)
         self.table_1.grid(row=4, column=0)
-        self.set_1 = tk.Button(self, text="Set", command=lambda: self.update_matrix('A'))
+        self.set_1 = tk.Button(self, text=_("Set"), command=lambda: self.update_matrix('A'))
         self.set_1.grid(row=3, column=0)
 
-        self.result = tk.Button(self, text="Inverse", command=self.get_result)
+        self.result = tk.Button(self, text=_("Inverse"), command=self.get_result)
         self.result.grid(row=5, column=1)
         mult_symbol = tk.Label(self, text="", font=LARGE_FONT)
         mult_symbol.grid(row=4, column=1)
 
-        button1 = tk.Button(self, text="Back to Home",
+        button1 = tk.Button(self, text=_("Back to Home"),
                             command=lambda: controller.show_frame(StartPage))
         button1.grid(row=6, column=1)
 
@@ -194,28 +200,28 @@ class Power(tk.Frame):
         label = tk.Label(self, text="A (Pow)", font=LARGE_FONT)
         label.grid(row=0, column=1)
 
-        size_A = label = tk.Label(self, text="Size A", font=LARGE_FONT)
+        size_A = label = tk.Label(self, text=_("Size A"), font=LARGE_FONT)
         size_A.grid(row=1, column=0)
         self.size_1 = SizeChooser(self)
         self.size_1.grid(row=2, column=0)
 
         self.table_1 = SimpleTableInput(self, 2, 2)
         self.table_1.grid(row=4, column=0)
-        self.set_1 = tk.Button(self, text="Set", command=lambda: self.update_matrix('A'))
+        self.set_1 = tk.Button(self, text=_("Set"), command=lambda: self.update_matrix('A'))
         self.set_1.grid(row=3, column=0)
 
-        self.power_label = tk.Label(self, text="Power", font=LARGE_FONT)
+        self.power_label = tk.Label(self, text=_("Power"), font=LARGE_FONT)
         self.power_label.grid(row=1, column=1)
         self.npow = tk.Entry(self)
         self.npow.grid(row=2, column=1)
-        self.set_2 = tk.Button(self, text="Set", command=self.get_pow)
+        self.set_2 = tk.Button(self, text=_("Set"), command=self.get_pow)
         self.set_2.grid(row=3, column=1)
 
-        self.result = tk.Button(self, text="Power", command=self.get_result)
+        self.result = tk.Button(self, text=_("Power"), command=self.get_result)
         self.result.grid(row=6, column=1)
         
 
-        button1 = tk.Button(self, text="Back to Home",
+        button1 = tk.Button(self, text=_("Back to Home"),
                             command=lambda: controller.show_frame(StartPage))
         button1.grid(row=7, column=1)
 
@@ -250,9 +256,9 @@ class Subtract(tk.Frame):
         label = tk.Label(self, text="A - B", font=LARGE_FONT)
         label.grid(row=0, column=1)
 
-        size_A = label = tk.Label(self, text="Size A", font=LARGE_FONT)
+        size_A = label = tk.Label(self, text=_("Size A"), font=LARGE_FONT)
         size_A.grid(row=1, column=0)
-        size_B = label = tk.Label(self, text="Size B", font=LARGE_FONT)
+        size_B = label = tk.Label(self, text=_("Size B"), font=LARGE_FONT)
         size_B.grid(row=1, column=2)
 
         self.size_1 = SizeChooser(self)
@@ -265,17 +271,17 @@ class Subtract(tk.Frame):
         self.table_2 = SimpleTableInput(self, 2, 2)
         self.table_2.grid(row=4, column=2)
 
-        self.set_1 = tk.Button(self, text="Set", command=lambda: self.update_matrix('A'))
+        self.set_1 = tk.Button(self, text=_("Set"), command=lambda: self.update_matrix('A'))
         self.set_1.grid(row=3, column=0)
-        self.set_2 = tk.Button(self, text="Set", command=lambda: self.update_matrix('B'))
+        self.set_2 = tk.Button(self, text=_("Set"), command=lambda: self.update_matrix('B'))
         self.set_2.grid(row=3, column=2)
 
-        self.result = tk.Button(self, text="Submit", command=self.get_result)
+        self.result = tk.Button(self, text=_("Submit"), command=self.get_result)
         self.result.grid(row=5, column=1)
         mult_symbol = tk.Label(self, text="-", font=LARGE_FONT)
         mult_symbol.grid(row=4, column=1)
 
-        button1 = tk.Button(self, text="Back to Home",
+        button1 = tk.Button(self, text=_("Back to Home"),
                             command=lambda: controller.show_frame(StartPage))
         button1.grid(row=6, column=1)
 
@@ -313,9 +319,9 @@ class Sum(tk.Frame):
         label = tk.Label(self, text="A + B", font=LARGE_FONT)
         label.grid(row=0, column=1)
 
-        size_A = label = tk.Label(self, text="Size A", font=LARGE_FONT)
+        size_A = label = tk.Label(self, text=_("Size A"), font=LARGE_FONT)
         size_A.grid(row=1, column=0)
-        size_B = label = tk.Label(self, text="Size B", font=LARGE_FONT)
+        size_B = label = tk.Label(self, text=_("Size B"), font=LARGE_FONT)
         size_B.grid(row=1, column=2)
 
         self.size_1 = SizeChooser(self)
@@ -328,17 +334,17 @@ class Sum(tk.Frame):
         self.table_2 = SimpleTableInput(self, 2, 2)
         self.table_2.grid(row=4, column=2)
 
-        self.set_1 = tk.Button(self, text="Set", command=lambda: self.update_matrix('A'))
+        self.set_1 = tk.Button(self, text=_("Set"), command=lambda: self.update_matrix('A'))
         self.set_1.grid(row=3, column=0)
-        self.set_2 = tk.Button(self, text="Set", command=lambda: self.update_matrix('B'))
+        self.set_2 = tk.Button(self, text=_("Set"), command=lambda: self.update_matrix('B'))
         self.set_2.grid(row=3, column=2)
 
-        self.result = tk.Button(self, text="Submit", command=self.get_result)
+        self.result = tk.Button(self, text=_("Submit"), command=self.get_result)
         self.result.grid(row=5, column=1)
         mult_symbol = tk.Label(self, text="+", font=LARGE_FONT)
         mult_symbol.grid(row=4, column=1)
 
-        button1 = tk.Button(self, text="Back to Home",
+        button1 = tk.Button(self, text=_("Back to Home"),
                             command=lambda: controller.show_frame(StartPage))
         button1.grid(row=6, column=1)
 
@@ -377,9 +383,9 @@ class Mult(tk.Frame):
         label = tk.Label(self, text="A x B", font=LARGE_FONT)
         label.grid(row=0, column=1)
 
-        size_A = label = tk.Label(self, text="Size A", font=LARGE_FONT)
+        size_A = label = tk.Label(self, text=_("Size A"), font=LARGE_FONT)
         size_A.grid(row=1, column=0)
-        size_B = label = tk.Label(self, text="Size B", font=LARGE_FONT)
+        size_B = label = tk.Label(self, text=_("Size B"), font=LARGE_FONT)
         size_B.grid(row=1, column=2)
 
         self.size_1 = SizeChooser(self)
@@ -392,18 +398,18 @@ class Mult(tk.Frame):
         self.table_2 = SimpleTableInput(self, 2, 2)
         self.table_2.grid(row=4, column=2)
 
-        self.set_1 = tk.Button(self, text="Set", command=lambda: self.update_matrix('A'))
+        self.set_1 = tk.Button(self, text=_("Set"), command=lambda: self.update_matrix('A'))
         self.set_1.grid(row=3, column=0)
-        self.set_2 = tk.Button(self, text="Set", command=lambda: self.update_matrix('B'))
+        self.set_2 = tk.Button(self, text=_("Set"), command=lambda: self.update_matrix('B'))
         self.set_2.grid(row=3, column=2)
 
-        self.result = tk.Button(self, text="Submit", command=self.get_result)
+        self.result = tk.Button(self, text=_("Submit"), command=self.get_result)
         self.result.grid(row=5, column=1)
         #self.table_r = TableResult(self, self.get_result, self.get_result, self.get_result())
         mult_symbol = tk.Label(self, text="X", font=LARGE_FONT)
         mult_symbol.grid(row=4, column=1)
 
-        button1 = tk.Button(self, text="Back to Home",
+        button1 = tk.Button(self, text=_("Back to Home"),
                             command=lambda: controller.show_frame(StartPage))
         button1.grid(row=6, column=1)
 
