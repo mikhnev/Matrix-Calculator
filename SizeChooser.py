@@ -1,6 +1,8 @@
 import tkinter as tk
 
 LARGE_FONT = ("Verdana", 12)
+
+
 class SizeChooser(tk.Frame):
 
     def __init__(self, parent):
