@@ -72,6 +72,5 @@ class Mult(tk.Frame):
         self.result = TableResult(self, result.shape[0], result.shape[1], result)
         self.result.grid(row=5, column=1)
 
-
     def do_multiply(m1, m2):
         return m1
