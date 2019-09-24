@@ -1,6 +1,7 @@
 import tkinter as tk
-from Operations import Mult
-from Operations import StartPage
+from pack.Operations import Mult
+from pack.Operations import StartPage
+from pack.Operations import Sum
 
 class Calc(tk.Tk):
 
@@ -15,21 +16,16 @@ class Calc(tk.Tk):
             frame = F(container, self)
             self.frames[F] = frame
             frame.grid(row=0, column=0, sticky="nsew")
+        for F in (StartPage, Sum):
+            frame = F(container, self)
+            self.frames[F] = frame
+            frame.grid(row=0, column=0, sticky="nsew")
 
         self.show_frame(StartPage)
 
     def show_frame(self, cont):
         frame = self.frames[cont]
         frame.tkraise()
-
-
-        '''
-        button2 = tk.Button(self, text="Visit Page 2",
-                            command=lambda: controller.show_frame(PageTwo))
-        button2.pack()'''
-
-
-
 
 app = Calc()
 app.mainloop()
