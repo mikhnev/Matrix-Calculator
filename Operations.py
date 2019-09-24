@@ -37,6 +37,16 @@ class StartPage(tk.Frame):
 
 class Determinant(tk.Frame):
 
+    def update_matrix(self, matrix):
+        if matrix == 'A':
+            self.table_1.destroy()
+            self.table_1 = SimpleTableInput(self, int(self.size_1.rows.get()), int(self.size_1.columns.get()))
+            self.table_1.grid(row=4, column=0)
+        else:
+            self.table_2.destroy()
+            self.table_2 = SimpleTableInput(self, int(self.size_2.rows.get()), int(self.size_2.columns.get()))
+            self.table_2.grid(row=4, column=2)
+
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         label = tk.Label(self, text="A (Det)", font=LARGE_FONT)
@@ -75,6 +85,16 @@ class Determinant(tk.Frame):
 
 class Transpose(tk.Frame):
 
+    def update_matrix(self, matrix):
+        if matrix == 'A':
+            self.table_1.destroy()
+            self.table_1 = SimpleTableInput(self, int(self.size_1.rows.get()), int(self.size_1.columns.get()))
+            self.table_1.grid(row=4, column=0)
+        else:
+            self.table_2.destroy()
+            self.table_2 = SimpleTableInput(self, int(self.size_2.rows.get()), int(self.size_2.columns.get()))
+            self.table_2.grid(row=4, column=2)
+
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         label = tk.Label(self, text="A (Tr)", font=LARGE_FONT)
@@ -111,6 +131,16 @@ class Transpose(tk.Frame):
 
 
 class Inverse(tk.Frame):
+
+    def update_matrix(self, matrix):
+        if matrix == 'A':
+            self.table_1.destroy()
+            self.table_1 = SimpleTableInput(self, int(self.size_1.rows.get()), int(self.size_1.columns.get()))
+            self.table_1.grid(row=4, column=0)
+        else:
+            self.table_2.destroy()
+            self.table_2 = SimpleTableInput(self, int(self.size_2.rows.get()), int(self.size_2.columns.get()))
+            self.table_2.grid(row=4, column=2)
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
@@ -149,6 +179,16 @@ class Inverse(tk.Frame):
 
 class Power(tk.Frame):
 
+    def update_matrix(self, matrix):
+        if matrix == 'A':
+            self.table_1.destroy()
+            self.table_1 = SimpleTableInput(self, int(self.size_1.rows.get()), int(self.size_1.columns.get()))
+            self.table_1.grid(row=4, column=0)
+        else:
+            self.table_2.destroy()
+            self.table_2 = SimpleTableInput(self, int(self.size_2.rows.get()), int(self.size_2.columns.get()))
+            self.table_2.grid(row=4, column=2)
+
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         label = tk.Label(self, text="A (Pow)", font=LARGE_FONT)
@@ -169,7 +209,7 @@ class Power(tk.Frame):
         self.npow = tk.Entry(self)
         self.npow.grid(row=2, column=1)
         self.set_2 = tk.Button(self, text="Set", command=self.get_pow)
-        self.set_2.grid(row=3, column=1)        
+        self.set_2.grid(row=3, column=1)
 
         self.result = tk.Button(self, text="Power", command=self.get_result)
         self.result.grid(row=6, column=1)
@@ -194,6 +234,16 @@ class Power(tk.Frame):
 
 
 class Subtract(tk.Frame):
+
+    def update_matrix(self, matrix):
+        if matrix == 'A':
+            self.table_1.destroy()
+            self.table_1 = SimpleTableInput(self, int(self.size_1.rows.get()), int(self.size_1.columns.get()))
+            self.table_1.grid(row=4, column=0)
+        else:
+            self.table_2.destroy()
+            self.table_2 = SimpleTableInput(self, int(self.size_2.rows.get()), int(self.size_2.columns.get()))
+            self.table_2.grid(row=4, column=2)
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
@@ -248,6 +298,16 @@ class Subtract(tk.Frame):
 
 class Sum(tk.Frame):
 
+    def update_matrix(self, matrix):
+        if matrix == 'A':
+            self.table_1.destroy()
+            self.table_1 = SimpleTableInput(self, int(self.size_1.rows.get()), int(self.size_1.columns.get()))
+            self.table_1.grid(row=4, column=0)
+        else:
+            self.table_2.destroy()
+            self.table_2 = SimpleTableInput(self, int(self.size_2.rows.get()), int(self.size_2.columns.get()))
+            self.table_2.grid(row=4, column=2)
+
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         label = tk.Label(self, text="A + B", font=LARGE_FONT)
@@ -301,6 +361,16 @@ class Sum(tk.Frame):
 
 
 class Mult(tk.Frame):
+
+    def update_matrix(self, matrix):
+        if matrix == 'A':
+            self.table_1.destroy()
+            self.table_1 = SimpleTableInput(self, int(self.size_1.rows.get()), int(self.size_1.columns.get()))
+            self.table_1.grid(row=4, column=0)
+        else:
+            self.table_2.destroy()
+            self.table_2 = SimpleTableInput(self, int(self.size_2.rows.get()), int(self.size_2.columns.get()))
+            self.table_2.grid(row=4, column=2)
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
