@@ -12,3 +12,6 @@ def do_subtract(x, y):
 
 def do_transpose(x):
     return nm.transpose(x)
+
+def do_det(x):
+    return nm.linalg.det(x)

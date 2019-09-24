@@ -25,6 +25,47 @@ class StartPage(tk.Frame):
         button = tk.Button(self, text="Transpose",
                            command=lambda: controller.show_frame(Transpose))
         button.grid(row=1, column=3)
+        button = tk.Button(self, text="Determinant",
+                           command=lambda: controller.show_frame(Determinant))
+        button.grid(row=1, column=4)
+
+class Determinant(tk.Frame):
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        label = tk.Label(self, text="A (Det)", font=LARGE_FONT)
+        label.grid(row=0, column=1)
+
+        size_A = label = tk.Label(self, text="Size A", font=LARGE_FONT)
+        size_A.grid(row=1, column=0)
+        self.size_1 = SizeChooser(self)
+        self.size_1.grid(row=2, column=0)
+
+        self.table_1 = SimpleTableInput(self, 2, 2)
+        self.table_1.grid(row=4, column=0)
+        self.set_1 = tk.Button(self, text="Set", command=lambda: self.update_matrix('A'))
+        self.set_1.grid(row=3, column=0)
+
+        self.result = tk.Button(self, text="Determinant", command=self.get_result)
+        self.result.grid(row=5, column=1)
+        mult_symbol = tk.Label(self, text="", font=LARGE_FONT)
+        mult_symbol.grid(row=4, column=1)
+
+        button1 = tk.Button(self, text="Back to Home",
+                            command=lambda: controller.show_frame(StartPage))
+        button1.grid(row=6, column=1)
+
+
+    def get_result(self):
+        first = []
+        for i in range(self.table_1.rows):
+            for j in range(self.table_1.columns):
+                first.append(self.table_1.get()[i][j])
+        m1 = nm.array(first, dtype=float).reshape(self.table_1.rows, self.table_1.columns);
+        result =  (do_det(m1))
+        print (result)
+        self.result = NumberResult(self, result)
+        self.result.grid(row=5, column=1)
+
 
 class Transpose(tk.Frame):
     def __init__(self, parent, controller):

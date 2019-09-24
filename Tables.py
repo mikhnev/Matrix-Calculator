@@ -27,6 +27,18 @@ class TableResult(tk.Frame):
                 e.insert(0, result[r][c])
                 self._entry[index] = e
 
+class NumberResult(tk.Frame):
+    def __init__(self, parent, result):
+        tk.Frame.__init__(self, parent)
+        self.rows = 1
+        self.columns = 1
+        self._entry = {}
+        index = (1, 1)
+        e = tk.Entry(self, validate="key")
+        e.grid(row=1, column=1, stick="nsew")
+        e.insert(0, result)
+        self._entry[index] = e
+
 class SimpleTableInput(tk.Frame):
     def __init__(self, parent, rows, columns):
         tk.Frame.__init__(self, parent)
