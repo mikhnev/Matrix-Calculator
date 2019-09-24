@@ -217,8 +217,8 @@ class Power(tk.Frame):
         self.set_1.grid(row=3, column=0)
 
         self.power_label = tk.Label(self, text=_("Power"), font=LARGE_FONT)
-        self.power_label.grid(row=1, column=1)
-        self.npow = tk.Entry(self)
+        self.power_label.grid(row=1, column=1, padx=25)
+        self.npow = tk.Entry(self, width=6)
         self.npow.grid(row=2, column=1)
         self.set_2 = tk.Button(self, text=_("Set"), command=self.get_pow)
         self.set_2.grid(row=3, column=1)
