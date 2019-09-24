@@ -2,7 +2,6 @@ import tkinter as tk
 from Operations import *
 
 class Calc(tk.Tk):
-
     def __init__(self, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
         container = tk.Frame(self)
@@ -24,6 +23,5 @@ class Calc(tk.Tk):
     def show_frame(self, cont):
         frame = self.frames[cont]
         frame.tkraise()
-
 app = Calc()
 app.mainloop()
