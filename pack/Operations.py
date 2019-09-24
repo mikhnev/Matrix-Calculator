@@ -3,7 +3,7 @@ import numpy as nm
 from pack.SizeChooser import SizeChooser
 from pack.Tables import TableResult
 from pack.Tables import SimpleTableInput
-from pack.Tables import update_matrix
+from pack.Simple_operations import do_mult
 
 LARGE_FONT = ("Verdana", 12)
 
@@ -67,6 +67,11 @@ class Mult(tk.Frame):
             for j in range(self.table_2.columns):
                 second.append(self.table_2.get()[i][j])
         m2 = nm.array(second, dtype=float).reshape(self.table_2.rows, self.table_2.columns);
-        result = nm.dot(m1, m2)
+        result =  (do_mult(m1, m2))
+        #result = nm.dot(m1, m2)
         self.result = TableResult(self, result.shape[0], result.shape[1], result)
         self.result.grid(row=5, column=1)
+
+
+    def do_multiply(m1, m2):
+        return m1
