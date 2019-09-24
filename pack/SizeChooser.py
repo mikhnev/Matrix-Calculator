@@ -11,4 +11,7 @@ class SizeChooser(tk.Frame):
         label.grid(row=0, column=1)
         self.columns = tk.Entry(self)
         self.columns.grid(row=0, column=2)
+<<<<<<< HEAD
 
+=======
+>>>>>>> r
