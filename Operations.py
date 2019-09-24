@@ -15,25 +15,25 @@ class StartPage(tk.Frame):
 
         button = tk.Button(self, text="Multiple",
                            command=lambda: controller.show_frame(Mult))
-        button.grid(row=1, column=0)
+        button.grid(row=1, column=1)
         button = tk.Button(self, text="Summarize",
                            command=lambda: controller.show_frame(Sum))
-        button.grid(row=1, column=1)
+        button.grid(row=1, column=2)
         button = tk.Button(self, text="Subtraction",
                            command=lambda: controller.show_frame(Subtract))
-        button.grid(row=1, column=2)
+        button.grid(row=1, column=3)
         button = tk.Button(self, text="Transpose",
                            command=lambda: controller.show_frame(Transpose))
-        button.grid(row=1, column=3)
+        button.grid(row=1, column=4)
         button = tk.Button(self, text="Determinant",
                            command=lambda: controller.show_frame(Determinant))
-        button.grid(row=2, column=0)
+        button.grid(row=1, column=5)
         button = tk.Button(self, text="Inverse",
                            command=lambda: controller.show_frame(Inverse))
-        button.grid(row=2, column=1)
+        button.grid(row=1, column=6)
         button = tk.Button(self, text="Power",
                            command=lambda: controller.show_frame(Power))
-        button.grid(row=2, column=2)
+        button.grid(row=1, column=7)
 
 class Determinant(tk.Frame):
 
