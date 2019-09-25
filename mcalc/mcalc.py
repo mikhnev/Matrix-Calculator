@@ -49,5 +49,8 @@ class Calc(tk.Tk):
     def show_frame(self, cont):
         frame = self.frames[cont]
         frame.tkraise()
+
+
 app = Calc()
+app.title("Matrix Calculator")
 app.mainloop()

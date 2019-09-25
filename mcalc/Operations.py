@@ -14,30 +14,40 @@ class StartPage(tk.Frame):
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
+        self.grid(sticky="nesw", padx=10, pady=10)
+        self.columnconfigure(0, weight=1)
+        self.columnconfigure(1, weight=1)
+        self.columnconfigure(2, weight=1)
+        self.columnconfigure(3, weight=1)
+        self.columnconfigure(4, weight=1)
+        self.columnconfigure(5, weight=1)
+        self.columnconfigure(6, weight=1)
+        self.rowconfigure(0, weight=1)
+        self.rowconfigure(1, weight=1)
         label = tk.Label(self, text=_("Select operation"), font=LARGE_FONT)
-        label.grid(row=0, column=0, columnspan=7, sticky="N")
+        label.grid(row=0, column=0, columnspan=7, sticky="nesw")
 
         button = tk.Button(self, text=_("Multiple"),
                            command=lambda: controller.show_frame(Mult))
-        button.grid(row=1, column=0)
+        button.grid(row=1, column=0, sticky="nesw")
         button = tk.Button(self, text=_("Summarize"),
                            command=lambda: controller.show_frame(Sum))
-        button.grid(row=1, column=1)
+        button.grid(row=1, column=1, sticky="nesw")
         button = tk.Button(self, text=_("Subtraction"),
                            command=lambda: controller.show_frame(Subtract))
-        button.grid(row=1, column=2)
+        button.grid(row=1, column=2, sticky="nesw")
         button = tk.Button(self, text=_("Transpose"),
                            command=lambda: controller.show_frame(Transpose))
-        button.grid(row=1, column=3)
+        button.grid(row=1, column=3, sticky="nesw")
         button = tk.Button(self, text=_("Determinant"),
                            command=lambda: controller.show_frame(Determinant))
-        button.grid(row=1, column=4)
+        button.grid(row=1, column=4, sticky="nesw")
         button = tk.Button(self, text=_("Inverse"),
                            command=lambda: controller.show_frame(Inverse))
-        button.grid(row=1, column=5)
+        button.grid(row=1, column=5, sticky="nesw")
         button = tk.Button(self, text=_("Power"),
                            command=lambda: controller.show_frame(Power))
-        button.grid(row=1, column=6)
+        button.grid(row=1, column=6, sticky="nesw")
 
 class Determinant(tk.Frame):
 
@@ -53,6 +63,18 @@ class Determinant(tk.Frame):
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
+        self.grid(sticky="nesw", padx=10, pady=10)
+        self.columnconfigure(0, weight=1)
+        self.columnconfigure(1, weight=1)
+        self.columnconfigure(2, weight=1)
+        self.columnconfigure(3, weight=1)
+        self.rowconfigure(0, weight=1)
+        self.rowconfigure(1, weight=1)
+        self.rowconfigure(2, weight=1)
+        self.rowconfigure(3, weight=1)
+        self.rowconfigure(4, weight=1)
+        self.rowconfigure(5, weight=1)
+        self.rowconfigure(6, weight=1)
         label = tk.Label(self, text=_("A (Det)"), font=LARGE_FONT)
         label.grid(row=0, column=1)
 
@@ -106,6 +128,18 @@ class Transpose(tk.Frame):
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
+        self.grid(sticky="nesw", padx=10, pady=10)
+        self.columnconfigure(0, weight=1)
+        self.columnconfigure(1, weight=1)
+        self.columnconfigure(2, weight=1)
+        self.columnconfigure(3, weight=1)
+        self.rowconfigure(0, weight=1)
+        self.rowconfigure(1, weight=1)
+        self.rowconfigure(2, weight=1)
+        self.rowconfigure(3, weight=1)
+        self.rowconfigure(4, weight=1)
+        self.rowconfigure(5, weight=1)
+        self.rowconfigure(6, weight=1)
         label = tk.Label(self, text=_("A (Tr)"), font=LARGE_FONT)
         label.grid(row=0, column=1)
 
@@ -151,6 +185,18 @@ class Inverse(tk.Frame):
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
+        self.grid(sticky="nesw", padx=10, pady=10)
+        self.columnconfigure(0, weight=1)
+        self.columnconfigure(1, weight=1)
+        self.columnconfigure(2, weight=1)
+        self.columnconfigure(3, weight=1)
+        self.rowconfigure(0, weight=1)
+        self.rowconfigure(1, weight=1)
+        self.rowconfigure(2, weight=1)
+        self.rowconfigure(3, weight=1)
+        self.rowconfigure(4, weight=1)
+        self.rowconfigure(5, weight=1)
+        self.rowconfigure(6, weight=1)
         label = tk.Label(self, text=_("A (Inv)"), font=LARGE_FONT)
         label.grid(row=0, column=1)
 
@@ -203,6 +249,18 @@ class Power(tk.Frame):
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
+        self.grid(sticky="nesw", padx=10, pady=10)
+        self.columnconfigure(0, weight=1)
+        self.columnconfigure(1, weight=1)
+        self.columnconfigure(2, weight=1)
+        self.columnconfigure(3, weight=1)
+        self.rowconfigure(0, weight=1)
+        self.rowconfigure(1, weight=1)
+        self.rowconfigure(2, weight=1)
+        self.rowconfigure(3, weight=1)
+        self.rowconfigure(4, weight=1)
+        self.rowconfigure(5, weight=1)
+        self.rowconfigure(6, weight=1)
         label = tk.Label(self, text=_("A (Pow)"), font=LARGE_FONT)
         label.grid(row=0, column=1)
 
@@ -261,6 +319,18 @@ class Subtract(tk.Frame):
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
+        self.grid(sticky="nesw", padx=10, pady=10)
+        self.columnconfigure(0, weight=1)
+        self.columnconfigure(1, weight=1)
+        self.columnconfigure(2, weight=1)
+        self.columnconfigure(3, weight=1)
+        self.rowconfigure(0, weight=1)
+        self.rowconfigure(1, weight=1)
+        self.rowconfigure(2, weight=1)
+        self.rowconfigure(3, weight=1)
+        self.rowconfigure(4, weight=1)
+        self.rowconfigure(5, weight=1)
+        self.rowconfigure(6, weight=1)
         label = tk.Label(self, text="A - B", font=LARGE_FONT)
         label.grid(row=0, column=1)
 
@@ -330,6 +400,18 @@ class Sum(tk.Frame):
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
+        self.grid(sticky="nesw", padx=10, pady=10)
+        self.columnconfigure(0, weight=1)
+        self.columnconfigure(1, weight=1)
+        self.columnconfigure(2, weight=1)
+        self.columnconfigure(3, weight=1)
+        self.rowconfigure(0, weight=1)
+        self.rowconfigure(1, weight=1)
+        self.rowconfigure(2, weight=1)
+        self.rowconfigure(3, weight=1)
+        self.rowconfigure(4, weight=1)
+        self.rowconfigure(5, weight=1)
+        self.rowconfigure(6, weight=1)
         label = tk.Label(self, text="A + B", font=LARGE_FONT)
         label.grid(row=0, column=1)
 
@@ -401,6 +483,18 @@ class Mult(tk.Frame):
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
+        self.grid(sticky="nesw", padx=10, pady=10)
+        self.columnconfigure(0, weight=1)
+        self.columnconfigure(1, weight=1)
+        self.columnconfigure(2, weight=1)
+        self.columnconfigure(3, weight=1)
+        self.rowconfigure(0, weight=1)
+        self.rowconfigure(1, weight=1)
+        self.rowconfigure(2, weight=1)
+        self.rowconfigure(3, weight=1)
+        self.rowconfigure(4, weight=1)
+        self.rowconfigure(5, weight=1)
+        self.rowconfigure(6, weight=1)
         label = tk.Label(self, text="A x B", font=LARGE_FONT)
         label.grid(row=0, column=1)
 
