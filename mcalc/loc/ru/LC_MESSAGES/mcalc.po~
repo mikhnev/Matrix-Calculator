@@ -6,70 +6,112 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2019-09-25 14:32+MSK\n"
+"POT-Creation-Date: 2019-09-25 20:19+MSK\n"
 "PO-Revision-Date: 2019-09-25 14:37+0300\n"
 "Last-Translator: denis <denis@inspiron>\n"
 "Language-Team: Russian\n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: pygettext.py 1.5\n"
-"Language: ru\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: Operations.py:19
-msgid "Start Page"
+#: Operations.py:17
+msgid "Select operation"
 msgstr "Выберите операцию"
 
-#: Operations.py:22
+#: Operations.py:20
 msgid "Multiple"
 msgstr "Умножение"
 
-#: Operations.py:25
+#: Operations.py:23
 msgid "Summarize"
 msgstr "Сложение"
 
-#: Operations.py:28
+#: Operations.py:26
 msgid "Subtraction"
 msgstr "Вычетание"
 
-#: Operations.py:31
+#: Operations.py:29 Operations.py:122
 msgid "Transpose"
 msgstr "Транспонирование"
 
-#: Operations.py:34
+#: Operations.py:32 Operations.py:69
 msgid "Determinant"
 msgstr "Определитель"
 
-#: Operations.py:37 Operations.py:170
+#: Operations.py:35 Operations.py:167
 msgid "Inverse"
 msgstr "Обратная"
 
-#: Operations.py:40 Operations.py:219 Operations.py:226
+#: Operations.py:38 Operations.py:219
 msgid "Power"
 msgstr "Возвести в степень"
 
-#: Operations.py:160 Operations.py:209 Operations.py:267 Operations.py:332
-#: Operations.py:398
+#: Operations.py:56
+msgid "A (Det)"
+msgstr "A (Det)"
+
+#: Operations.py:59 Operations.py:112 Operations.py:157 Operations.py:209
+#: Operations.py:267 Operations.py:336 Operations.py:407
 msgid "Size A"
 msgstr "Размер матрицы А"
 
-#: Operations.py:167 Operations.py:216 Operations.py:223 Operations.py:282
-#: Operations.py:284 Operations.py:347 Operations.py:349 Operations.py:413
-#: Operations.py:415
+#: Operations.py:66 Operations.py:119 Operations.py:164 Operations.py:216
+#: Operations.py:223 Operations.py:282 Operations.py:284 Operations.py:351
+#: Operations.py:353 Operations.py:422 Operations.py:424
 msgid "Set"
 msgstr "Установить"
 
-#: Operations.py:175 Operations.py:230 Operations.py:292 Operations.py:357
-#: Operations.py:424
-msgid "Back to Home"
+#: Operations.py:74 Operations.py:127 Operations.py:172 Operations.py:230
+#: Operations.py:292 Operations.py:361 Operations.py:433
+msgid "Back"
 msgstr "Назад"
 
-#: Operations.py:269 Operations.py:334 Operations.py:400
+#: Operations.py:81
+msgid "Matrix must be square!"
+msgstr "Матрица должна быть квадратной!"
+
+#: Operations.py:81 Operations.py:183 Operations.py:299 Operations.py:369
+#: Operations.py:439
+msgid "Error"
+msgstr "Ошибка"
+
+#: Operations.py:89 Operations.py:138 Operations.py:186 Operations.py:244
+#: Operations.py:312 Operations.py:383 Operations.py:453
+msgid "Result"
+msgstr "Результат"
+
+#: Operations.py:109
+msgid "A (Tr)"
+msgstr "A (Tr)"
+
+#: Operations.py:154
+msgid "A (Inv)"
+msgstr "A (Inv)"
+
+#: Operations.py:183
+msgid "Matrix must be square and |A| != 0"
+msgstr "Матрица должна быть квадратной и невырожденной"
+
+#: Operations.py:206
+msgid "A (Pow)"
+msgstr "A (Pow)"
+
+#: Operations.py:226 Operations.py:287 Operations.py:356 Operations.py:427
+msgid "Calculate"
+msgstr "Вычислить"
+
+#: Operations.py:269 Operations.py:338 Operations.py:409
 msgid "Size B"
 msgstr "Размер матрицы B"
 
-#: Operations.py:287 Operations.py:352 Operations.py:418
-msgid "Submit"
-msgstr "Посчитать"
+#: Operations.py:299 Operations.py:369
+msgid "Sizes of matrices must match!"
+msgstr "Размеры матриц должны совпадать"
+
+#: Operations.py:439
+msgid "Number of columns A must be equal to number of rows B"
+msgstr "Число столбцов матрицы А должно совпадать с числом строк матрицы B"
