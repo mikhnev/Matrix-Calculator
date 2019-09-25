@@ -88,7 +88,7 @@ class Determinant(tk.Frame):
         self.set_1 = tk.Button(self, text=_("Set"), command=lambda: self.update_matrix('A'))
         self.set_1.grid(row=3, column=0)
 
-        self.result = tk.Button(self, text=_("Determinant"), command=self.get_result)
+        self.result = tk.Button(self, text=_("Calculate"), command=self.get_result)
         self.result.grid(row=5, column=1)
         mult_symbol = tk.Label(self, text="", font=LARGE_FONT)
         mult_symbol.grid(row=4, column=1)
@@ -153,7 +153,7 @@ class Transpose(tk.Frame):
         self.set_1 = tk.Button(self, text=_("Set"), command=lambda: self.update_matrix('A'))
         self.set_1.grid(row=3, column=0)
 
-        self.result = tk.Button(self, text=_("Transpose"), command=self.get_result)
+        self.result = tk.Button(self, text=_("Calculate"), command=self.get_result)
         self.result.grid(row=5, column=1)
         mult_symbol = tk.Label(self, text="", font=LARGE_FONT)
         mult_symbol.grid(row=4, column=1)
@@ -210,7 +210,7 @@ class Inverse(tk.Frame):
         self.set_1 = tk.Button(self, text=_("Set"), command=lambda: self.update_matrix('A'))
         self.set_1.grid(row=3, column=0)
 
-        self.result = tk.Button(self, text=_("Inverse"), command=self.get_result)
+        self.result = tk.Button(self, text=_("Calculate"), command=self.get_result)
         self.result.grid(row=5, column=1)
         mult_symbol = tk.Label(self, text="", font=LARGE_FONT)
         mult_symbol.grid(row=4, column=1)

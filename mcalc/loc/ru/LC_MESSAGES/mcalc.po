@@ -32,7 +32,7 @@ msgstr "Сложение"
 
 #: Operations.py:36
 msgid "Subtraction"
-msgstr "Вычетание"
+msgstr "Вычитание"
 
 #: Operations.py:39 Operations.py:156
 msgid "Transpose"
