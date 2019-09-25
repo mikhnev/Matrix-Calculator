@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="Matrix-Calculator",
+    name="mcalc",
     version="0.0.1",
     author="Denis Mikhnev and Vlad Orlov",
     author_email="denis.mikhnev@gmail.com",
