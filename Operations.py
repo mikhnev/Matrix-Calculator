@@ -434,7 +434,7 @@ class Mult(tk.Frame):
         button1.grid(row=6, column=1)
 
     def get_result(self):
-        if self.table_1.rows != self.table_2.columns or self.table_1.columns != self.table_2.rows:
+        if self.table_1.columns != self.table_2.rows:
             mb.showerror("Ошибка", "Кол-во столбцов в одной из матриц должно совпадать с кол-ом строк в другой")
         else:
             first = []
