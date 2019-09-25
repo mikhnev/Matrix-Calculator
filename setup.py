@@ -15,7 +15,7 @@ setuptools.setup(
     url="https://github.com/mikhnev/Matrix-Calculator",
     packages=setuptools.find_packages(),
     setup_require=["mo_installer"],
-    locale_src='./mcalc/loc',
+    locale_src='./mcalc/locale',
     classifiers=[
         "Programming Language :: Python :: 3",
         "Operating System :: OS Independent",
