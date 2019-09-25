@@ -20,56 +20,56 @@ msgstr ""
 
 #: Operations.py:19
 msgid "Start Page"
-msgstr ""
+msgstr "Выберите операцию"
 
 #: Operations.py:22
 msgid "Multiple"
-msgstr ""
+msgstr "Умножение"
 
 #: Operations.py:25
 msgid "Summarize"
-msgstr ""
+msgstr "Сложение"
 
 #: Operations.py:28
 msgid "Subtraction"
-msgstr ""
+msgstr "Вычетание"
 
 #: Operations.py:31
 msgid "Transpose"
-msgstr ""
+msgstr "Транспонирование"
 
 #: Operations.py:34
 msgid "Determinant"
-msgstr ""
+msgstr "Определитель"
 
 #: Operations.py:37 Operations.py:170
 msgid "Inverse"
-msgstr ""
+msgstr "Обратная"
 
 #: Operations.py:40 Operations.py:219 Operations.py:226
 msgid "Power"
-msgstr ""
+msgstr "Возвести в степень"
 
 #: Operations.py:160 Operations.py:209 Operations.py:267 Operations.py:332
 #: Operations.py:398
 msgid "Size A"
-msgstr ""
+msgstr "Размер матрицы А"
 
 #: Operations.py:167 Operations.py:216 Operations.py:223 Operations.py:282
 #: Operations.py:284 Operations.py:347 Operations.py:349 Operations.py:413
 #: Operations.py:415
 msgid "Set"
-msgstr ""
+msgstr "Установить"
 
 #: Operations.py:175 Operations.py:230 Operations.py:292 Operations.py:357
 #: Operations.py:424
 msgid "Back to Home"
-msgstr ""
+msgstr "Назад"
 
 #: Operations.py:269 Operations.py:334 Operations.py:400
 msgid "Size B"
-msgstr ""
+msgstr "Размер матрицы B"
 
 #: Operations.py:287 Operations.py:352 Operations.py:418
 msgid "Submit"
-msgstr ""
+msgstr "Посчитать"
