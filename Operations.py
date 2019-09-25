@@ -7,16 +7,14 @@ import gettext
 import os
 from tkinter import messagebox as mb
 
-LARGE_FONT = ("Verdana", 12)
+LARGE_FONT = ('Verdana', 12)
 gettext.install(os.path.join(os.path.dirname(__file__)), 'loc')
-gettext.bindtextdomain('', '/loc')
-_ = gettext.gettext
 
 class StartPage(tk.Frame):
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
-        label = tk.Label(self, text=_("Start Page"), font=LARGE_FONT)
+        label = tk.Label(self, text=_("Select operation"), font=LARGE_FONT)
         label.grid(row=0, column=0, columnspan=7, sticky="N")
 
         button = tk.Button(self, text=_("Multiple"),
@@ -55,40 +53,43 @@ class Determinant(tk.Frame):
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
-        label = tk.Label(self, text="A (Det)", font=LARGE_FONT)
+        label = tk.Label(self, text=_("A (Det)"), font=LARGE_FONT)
         label.grid(row=0, column=1)
 
-        size_A = label = tk.Label(self, text="Size A", font=LARGE_FONT)
+        size_A = label = tk.Label(self, text=_("Size A"), font=LARGE_FONT)
         size_A.grid(row=1, column=0)
         self.size_1 = SizeChooser(self)
         self.size_1.grid(row=2, column=0)
 
         self.table_1 = SimpleTableInput(self, 2, 2)
         self.table_1.grid(row=4, column=0)
-        self.set_1 = tk.Button(self, text="Set", command=lambda: self.update_matrix('A'))
+        self.set_1 = tk.Button(self, text=_("Set"), command=lambda: self.update_matrix('A'))
         self.set_1.grid(row=3, column=0)
 
-        self.result = tk.Button(self, text="Determinant", command=self.get_result)
+        self.result = tk.Button(self, text=_("Determinant"), command=self.get_result)
         self.result.grid(row=5, column=1)
         mult_symbol = tk.Label(self, text="", font=LARGE_FONT)
         mult_symbol.grid(row=4, column=1)
 
-        button1 = tk.Button(self, text="Back to Home",
+        button1 = tk.Button(self, text=_("Back"),
                             command=lambda: controller.show_frame(StartPage))
         button1.grid(row=6, column=1)
 
     def get_result(self):
         first = []
-        for i in range(self.table_1.rows):
-            for j in range(self.table_1.columns):
-                first.append(self.table_1.get()[i][j])
-        m1 = nm.array(first, dtype=float).reshape(self.table_1.rows, self.table_1.columns);
-        result =  (do_det(m1))
-        #print (result)
-        self.label_result = tk.Label(self, text="Result", font=LARGE_FONT)
-        self.label_result.grid(row=0, column=3, rowspan=2)
-        self.result = NumberResult(self, result)
-        self.result.grid(row=1, column=3, rowspan=3, padx=100)
+        if self.table_1.columns != self.table_1.rows:
+            mb.showerror(_("Error"), _("Matrix must be square!"))
+        else:
+            for i in range(self.table_1.rows):
+                for j in range(self.table_1.columns):
+                    first.append(self.table_1.get()[i][j])
+            m1 = nm.array(first, dtype=float).reshape(self.table_1.rows, self.table_1.columns);
+            result =  (do_det(m1))
+            #print (result)
+            self.label_result = tk.Label(self, text=_("Result"), font=LARGE_FONT)
+            self.label_result.grid(row=0, column=3, rowspan=2)
+            self.result = NumberResult(self, result)
+            self.result.grid(row=1, column=3, rowspan=3, padx=100)
 
 
 class Transpose(tk.Frame):
@@ -105,25 +106,25 @@ class Transpose(tk.Frame):
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
-        label = tk.Label(self, text="A (Tr)", font=LARGE_FONT)
+        label = tk.Label(self, text=_("A (Tr)"), font=LARGE_FONT)
         label.grid(row=0, column=1)
 
-        size_A = label = tk.Label(self, text="Size A", font=LARGE_FONT)
+        size_A = label = tk.Label(self, text=_("Size A"), font=LARGE_FONT)
         size_A.grid(row=1, column=0)
         self.size_1 = SizeChooser(self)
         self.size_1.grid(row=2, column=0)
 
         self.table_1 = SimpleTableInput(self, 2, 2)
         self.table_1.grid(row=4, column=0)
-        self.set_1 = tk.Button(self, text="Set", command=lambda: self.update_matrix('A'))
+        self.set_1 = tk.Button(self, text=_("Set"), command=lambda: self.update_matrix('A'))
         self.set_1.grid(row=3, column=0)
 
-        self.result = tk.Button(self, text="Transpose", command=self.get_result)
+        self.result = tk.Button(self, text=_("Transpose"), command=self.get_result)
         self.result.grid(row=5, column=1)
         mult_symbol = tk.Label(self, text="", font=LARGE_FONT)
         mult_symbol.grid(row=4, column=1)
 
-        button1 = tk.Button(self, text="Back to Home",
+        button1 = tk.Button(self, text=_("Back"),
                             command=lambda: controller.show_frame(StartPage))
         button1.grid(row=6, column=1)
 
@@ -134,7 +135,7 @@ class Transpose(tk.Frame):
                 first.append(self.table_1.get()[i][j])
         m1 = nm.array(first, dtype=float).reshape(self.table_1.rows, self.table_1.columns);
         result =  (do_transpose(m1))
-        self.label_result = tk.Label(self, text="Result", font=LARGE_FONT)
+        self.label_result = tk.Label(self, text=_("Result"), font=LARGE_FONT)
         self.label_result.grid(row=0, column=3, rowspan=3)
         self.result = TableResult(self, result.shape[0], result.shape[1], result)
         self.result.grid(row=3, column=3, padx=100)
@@ -150,7 +151,7 @@ class Inverse(tk.Frame):
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
-        label = tk.Label(self, text="A (Inv)", font=LARGE_FONT)
+        label = tk.Label(self, text=_("A (Inv)"), font=LARGE_FONT)
         label.grid(row=0, column=1)
 
         size_A = label = tk.Label(self, text=_("Size A"), font=LARGE_FONT)
@@ -168,7 +169,7 @@ class Inverse(tk.Frame):
         mult_symbol = tk.Label(self, text="", font=LARGE_FONT)
         mult_symbol.grid(row=4, column=1)
 
-        button1 = tk.Button(self, text=_("Back to Home"),
+        button1 = tk.Button(self, text=_("Back"),
                             command=lambda: controller.show_frame(StartPage))
         button1.grid(row=6, column=1)
 
@@ -179,10 +180,10 @@ class Inverse(tk.Frame):
                 first.append(self.table_1.get()[i][j])
         m1 = nm.array(first, dtype=float).reshape(self.table_1.rows, self.table_1.columns)
         if self.table_1.rows != self.table_1.columns or nm.linalg.det(m1) == 0:
-            mb.showerror("Ошибка", "Матрица должна быть квадратной и не сингулярной")
+            mb.showerror(_("Error"), _("Matrix must be square and |A| != 0"))
         else:
-            result =  (do_inv(m1))
-            self.label_result = tk.Label(self, text="Result", font=LARGE_FONT)
+            result = (do_inv(m1))
+            self.label_result = tk.Label(self, text=_("Result"), font=LARGE_FONT)
             self.label_result.grid(row=0, column=3, rowspan=3)
             self.result = TableResult(self, result.shape[0], result.shape[1], result)
             self.result.grid(row=3, column=3, padx=100)
@@ -202,7 +203,7 @@ class Power(tk.Frame):
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
-        label = tk.Label(self, text="A (Pow)", font=LARGE_FONT)
+        label = tk.Label(self, text=_("A (Pow)"), font=LARGE_FONT)
         label.grid(row=0, column=1)
 
         size_A = label = tk.Label(self, text=_("Size A"), font=LARGE_FONT)
@@ -222,11 +223,11 @@ class Power(tk.Frame):
         self.set_2 = tk.Button(self, text=_("Set"), command=self.get_pow)
         self.set_2.grid(row=3, column=1)
 
-        self.result = tk.Button(self, text=_("Power"), command=self.get_result)
+        self.result = tk.Button(self, text=_("Calculate"), command=self.get_result)
         self.result.grid(row=6, column=1)
         
 
-        button1 = tk.Button(self, text=_("Back to Home"),
+        button1 = tk.Button(self, text=_("Back"),
                             command=lambda: controller.show_frame(StartPage))
         button1.grid(row=7, column=1)
 
@@ -240,7 +241,7 @@ class Power(tk.Frame):
                 first.append(self.table_1.get()[i][j])
         m1 = nm.array(first, dtype=float).reshape(self.table_1.rows, self.table_1.columns);
         result =  (do_pow(m1, self.n))
-        self.label_result = tk.Label(self, text="Result", font=LARGE_FONT)
+        self.label_result = tk.Label(self, text=_("Result"), font=LARGE_FONT)
         self.label_result.grid(row=0, column=3, rowspan=3)
         self.result = TableResult(self, result.shape[0], result.shape[1], result)
         self.result.grid(row=3, column=3, padx=100)
@@ -283,19 +284,19 @@ class Subtract(tk.Frame):
         self.set_2 = tk.Button(self, text=_("Set"), command=lambda: self.update_matrix('B'))
         self.set_2.grid(row=3, column=2)
 
-        self.result = tk.Button(self, text=_("Submit"), command=self.get_result)
+        self.result = tk.Button(self, text=_("Calculate"), command=self.get_result)
         self.result.grid(row=5, column=1)
         mult_symbol = tk.Label(self, text="-", font=LARGE_FONT)
         mult_symbol.grid(row=4, column=1)
 
-        button1 = tk.Button(self, text=_("Back to Home"),
+        button1 = tk.Button(self, text=_("Back"),
                             command=lambda: controller.show_frame(StartPage))
         button1.grid(row=6, column=1)
 
     def get_result(self):
         first = []
         if self.table_1.rows != self.table_2.rows or self.table_1.columns != self.table_2.columns:
-            mb.showerror("Ошибка", "Количество строк в матрицах должно совпадать")
+            mb.showerror(_("Error"), _("Sizes of matrices must match!"))
         else:
             for i in range(self.table_1.rows):
                 for j in range(self.table_1.columns):
@@ -308,7 +309,7 @@ class Subtract(tk.Frame):
             m2 = nm.array(second, dtype=float).reshape(self.table_2.rows, self.table_2.columns);
             result =  (do_subtract(m1, m2))
         #result = nm.dot(m1, m2)
-            self.label_result = tk.Label(self, text="Result", font=LARGE_FONT)
+            self.label_result = tk.Label(self, text=_("Result"), font=LARGE_FONT)
             self.label_result.grid(row=0, column=3, rowspan=3)
             self.result = TableResult(self, result.shape[0], result.shape[1], result)
             self.result.grid(row=3, column=3, padx=100)
@@ -352,12 +353,12 @@ class Sum(tk.Frame):
         self.set_2 = tk.Button(self, text=_("Set"), command=lambda: self.update_matrix('B', controller))
         self.set_2.grid(row=3, column=2)
 
-        self.result = tk.Button(self, text=_("Submit"), command=(self.get_result))
+        self.result = tk.Button(self, text=_("Calculate"), command=(self.get_result))
         self.result.grid(row=5, column=1)
         mult_symbol = tk.Label(self, text="+", font=LARGE_FONT)
         mult_symbol.grid(row=4, column=1)
 
-        button1 = tk.Button(self, text=_("Back to Home"),
+        button1 = tk.Button(self, text=_("Back"),
                             command=lambda: controller.show_frame(StartPage))
         button1.grid(row=6, column=1)
 
@@ -365,7 +366,7 @@ class Sum(tk.Frame):
     def get_result(self):
         first = []
         if self.table_1.rows != self.table_2.rows or self.table_1.columns != self.table_2.columns:
-            mb.showerror("Ошибка", "Количество строк в матрицах должно совпадать")
+            mb.showerror(_("Error"), _("Sizes of matrices must match!"))
         else:
 
             for i in range(self.table_1.rows):
@@ -379,7 +380,7 @@ class Sum(tk.Frame):
             m2 = nm.array(second, dtype=float).reshape(self.table_2.rows, self.table_2.columns);
             result =  (do_sum(m1, m2))
         #result = nm.dot(m1, m2)
-            self.label_result = tk.Label(self, text="Result", font=LARGE_FONT)
+            self.label_result = tk.Label(self, text=_("Result"), font=LARGE_FONT)
             self.label_result.grid(row=0, column=3, rowspan=3)
             self.result = TableResult(self, result.shape[0], result.shape[1], result)
             self.result.grid(row=3, column=3, padx=100)
@@ -423,19 +424,19 @@ class Mult(tk.Frame):
         self.set_2 = tk.Button(self, text=_("Set"), command=lambda: self.update_matrix('B'))
         self.set_2.grid(row=3, column=2)
 
-        self.result = tk.Button(self, text=_("Submit"), command=self.get_result)
+        self.result = tk.Button(self, text=_("Calculate"), command=self.get_result)
         self.result.grid(row=5, column=1)
         #self.table_r = TableResult(self, self.get_result, self.get_result, self.get_result())
         mult_symbol = tk.Label(self, text="X", font=LARGE_FONT)
         mult_symbol.grid(row=4, column=1)
 
-        button1 = tk.Button(self, text=_("Back to Home"),
+        button1 = tk.Button(self, text=_("Back"),
                             command=lambda: controller.show_frame(StartPage))
         button1.grid(row=6, column=1)
 
     def get_result(self):
         if self.table_1.columns != self.table_2.rows:
-            mb.showerror("Ошибка", "Кол-во столбцов в одной из матриц должно совпадать с кол-ом строк в другой")
+            mb.showerror(_("Error"), _("Number of columns A must be equal to number of rows B"))
         else:
             first = []
             for i in range(self.table_1.rows):
@@ -449,7 +450,7 @@ class Mult(tk.Frame):
             m2 = nm.array(second, dtype=float).reshape(self.table_2.rows, self.table_2.columns);
             result =  (do_mult(m1, m2))
         #result = nm.dot(m1, m2)
-            self.label_result = tk.Label(self, text="Result", font=LARGE_FONT)
+            self.label_result = tk.Label(self, text=_("Result"), font=LARGE_FONT)
             self.label_result.grid(row=0, column=3, rowspan=3)
             self.result = TableResult(self, result.shape[0], result.shape[1], result)
             self.result.grid(row=3, column=3, padx=100)
