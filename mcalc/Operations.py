@@ -8,7 +8,7 @@ import os
 from tkinter import messagebox as mb
 
 LARGE_FONT = ('Verdana', 12)
-gettext.install('mcalc', os.path.join(os.path.dirname(__file__)), 'loc')
+gettext.install('mcalc', os.path.join(os.path.dirname(__file__), 'loc'))
 
 class StartPage(tk.Frame):
 
