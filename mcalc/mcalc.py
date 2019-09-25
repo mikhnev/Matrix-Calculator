@@ -50,7 +50,7 @@ class Calc(tk.Tk):
         frame = self.frames[cont]
         frame.tkraise()
 
-
-app = Calc()
-app.title("Matrix Calculator")
-app.mainloop()
+if __name__ == '__main__':
+    app = Calc()
+    app.title("Matrix Calculator")
+    app.mainloop()
