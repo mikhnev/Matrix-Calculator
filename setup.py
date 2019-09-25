@@ -18,7 +18,6 @@ setuptools.setup(
     locale_src='./mcalc/loc',
     classifiers=[
         "Programming Language :: Python :: 3",
-        "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
 )
