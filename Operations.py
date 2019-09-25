@@ -5,7 +5,7 @@ from Tables import *
 from Simple_operations import *
 import gettext
 import os
-import sys
+from tkinter import messagebox as mb
 
 LARGE_FONT = ("Verdana", 12)
 gettext.install(os.path.join(os.path.dirname(__file__)), 'loc')
@@ -147,10 +147,6 @@ class Inverse(tk.Frame):
             self.table_1.destroy()
             self.table_1 = SimpleTableInput(self, int(self.size_1.rows.get()), int(self.size_1.columns.get()))
             self.table_1.grid(row=4, column=0)
-        else:
-            self.table_2.destroy()
-            self.table_2 = SimpleTableInput(self, int(self.size_2.rows.get()), int(self.size_2.columns.get()))
-            self.table_2.grid(row=4, column=2)
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
@@ -181,12 +177,15 @@ class Inverse(tk.Frame):
         for i in range(self.table_1.rows):
             for j in range(self.table_1.columns):
                 first.append(self.table_1.get()[i][j])
-        m1 = nm.array(first, dtype=float).reshape(self.table_1.rows, self.table_1.columns);
-        result =  (do_inv(m1))
-        self.label_result = tk.Label(self, text="Result", font=LARGE_FONT)
-        self.label_result.grid(row=0, column=3, rowspan=3)
-        self.result = TableResult(self, result.shape[0], result.shape[1], result)
-        self.result.grid(row=3, column=3, padx=100)
+        m1 = nm.array(first, dtype=float).reshape(self.table_1.rows, self.table_1.columns)
+        if self.table_1.rows != self.table_1.columns or nm.linalg.det(m1) == 0:
+            mb.showerror("Ошибка", "Матрица должна быть квадратной и не сингулярной")
+        else:
+            result =  (do_inv(m1))
+            self.label_result = tk.Label(self, text="Result", font=LARGE_FONT)
+            self.label_result.grid(row=0, column=3, rowspan=3)
+            self.result = TableResult(self, result.shape[0], result.shape[1], result)
+            self.result.grid(row=3, column=3, padx=100)
 
 
 class Power(tk.Frame):
@@ -295,26 +294,29 @@ class Subtract(tk.Frame):
 
     def get_result(self):
         first = []
-        for i in range(self.table_1.rows):
-            for j in range(self.table_1.columns):
-                first.append(self.table_1.get()[i][j])
-        m1 = nm.array(first, dtype=float).reshape(self.table_1.rows, self.table_1.columns);
-        second = []
-        for i in range(self.table_2.rows):
-            for j in range(self.table_2.columns):
-                second.append(self.table_2.get()[i][j])
-        m2 = nm.array(second, dtype=float).reshape(self.table_2.rows, self.table_2.columns);
-        result =  (do_subtract(m1, m2))
+        if self.table_1.rows != self.table_2.rows or self.table_1.columns != self.table_2.columns:
+            mb.showerror("Ошибка", "Количество строк в матрицах должно совпадать")
+        else:
+            for i in range(self.table_1.rows):
+                for j in range(self.table_1.columns):
+                    first.append(self.table_1.get()[i][j])
+            m1 = nm.array(first, dtype=float).reshape(self.table_1.rows, self.table_1.columns);
+            second = []
+            for i in range(self.table_2.rows):
+                for j in range(self.table_2.columns):
+                    second.append(self.table_2.get()[i][j])
+            m2 = nm.array(second, dtype=float).reshape(self.table_2.rows, self.table_2.columns);
+            result =  (do_subtract(m1, m2))
         #result = nm.dot(m1, m2)
-        self.label_result = tk.Label(self, text="Result", font=LARGE_FONT)
-        self.label_result.grid(row=0, column=3, rowspan=3)
-        self.result = TableResult(self, result.shape[0], result.shape[1], result)
-        self.result.grid(row=3, column=3, padx=100)
+            self.label_result = tk.Label(self, text="Result", font=LARGE_FONT)
+            self.label_result.grid(row=0, column=3, rowspan=3)
+            self.result = TableResult(self, result.shape[0], result.shape[1], result)
+            self.result.grid(row=3, column=3, padx=100)
 
 
 class Sum(tk.Frame):
 
-    def update_matrix(self, matrix):
+    def update_matrix(self, matrix, controller):
         if matrix == 'A':
             self.table_1.destroy()
             self.table_1 = SimpleTableInput(self, int(self.size_1.rows.get()), int(self.size_1.columns.get()))
@@ -323,6 +325,7 @@ class Sum(tk.Frame):
             self.table_2.destroy()
             self.table_2 = SimpleTableInput(self, int(self.size_2.rows.get()), int(self.size_2.columns.get()))
             self.table_2.grid(row=4, column=2)
+
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
@@ -344,12 +347,12 @@ class Sum(tk.Frame):
         self.table_2 = SimpleTableInput(self, 2, 2)
         self.table_2.grid(row=4, column=2)
 
-        self.set_1 = tk.Button(self, text=_("Set"), command=lambda: self.update_matrix('A'))
+        self.set_1 = tk.Button(self, text=_("Set"), command=lambda: self.update_matrix('A', controller))
         self.set_1.grid(row=3, column=0)
-        self.set_2 = tk.Button(self, text=_("Set"), command=lambda: self.update_matrix('B'))
+        self.set_2 = tk.Button(self, text=_("Set"), command=lambda: self.update_matrix('B', controller))
         self.set_2.grid(row=3, column=2)
 
-        self.result = tk.Button(self, text=_("Submit"), command=self.get_result)
+        self.result = tk.Button(self, text=_("Submit"), command=(self.get_result))
         self.result.grid(row=5, column=1)
         mult_symbol = tk.Label(self, text="+", font=LARGE_FONT)
         mult_symbol.grid(row=4, column=1)
@@ -358,23 +361,28 @@ class Sum(tk.Frame):
                             command=lambda: controller.show_frame(StartPage))
         button1.grid(row=6, column=1)
 
+
     def get_result(self):
         first = []
-        for i in range(self.table_1.rows):
-            for j in range(self.table_1.columns):
-                first.append(self.table_1.get()[i][j])
-        m1 = nm.array(first, dtype=float).reshape(self.table_1.rows, self.table_1.columns);
-        second = []
-        for i in range(self.table_2.rows):
-            for j in range(self.table_2.columns):
-                second.append(self.table_2.get()[i][j])
-        m2 = nm.array(second, dtype=float).reshape(self.table_2.rows, self.table_2.columns);
-        result =  (do_sum(m1, m2))
+        if self.table_1.rows != self.table_2.rows or self.table_1.columns != self.table_2.columns:
+            mb.showerror("Ошибка", "Количество строк в матрицах должно совпадать")
+        else:
+
+            for i in range(self.table_1.rows):
+                for j in range(self.table_1.columns):
+                    first.append(self.table_1.get()[i][j])
+            m1 = nm.array(first, dtype=float).reshape(self.table_1.rows, self.table_1.columns);
+            second = []
+            for i in range(self.table_2.rows):
+                for j in range(self.table_2.columns):
+                    second.append(self.table_2.get()[i][j])
+            m2 = nm.array(second, dtype=float).reshape(self.table_2.rows, self.table_2.columns);
+            result =  (do_sum(m1, m2))
         #result = nm.dot(m1, m2)
-        self.label_result = tk.Label(self, text="Result", font=LARGE_FONT)
-        self.label_result.grid(row=0, column=3, rowspan=3)
-        self.result = TableResult(self, result.shape[0], result.shape[1], result)
-        self.result.grid(row=3, column=3, padx=100)
+            self.label_result = tk.Label(self, text="Result", font=LARGE_FONT)
+            self.label_result.grid(row=0, column=3, rowspan=3)
+            self.result = TableResult(self, result.shape[0], result.shape[1], result)
+            self.result.grid(row=3, column=3, padx=100)
 
 
 
@@ -426,20 +434,22 @@ class Mult(tk.Frame):
         button1.grid(row=6, column=1)
 
     def get_result(self):
-
-        first = []
-        for i in range(self.table_1.rows):
-            for j in range(self.table_1.columns):
-                first.append(self.table_1.get()[i][j])
-        m1 = nm.array(first, dtype=float).reshape(self.table_1.rows, self.table_1.columns);
-        second = []
-        for i in range(self.table_2.rows):
-            for j in range(self.table_2.columns):
-                second.append(self.table_2.get()[i][j])
-        m2 = nm.array(second, dtype=float).reshape(self.table_2.rows, self.table_2.columns);
-        result =  (do_mult(m1, m2))
+        if self.table_1.rows != self.table_2.columns or self.table_1.columns != self.table_2.rows:
+            mb.showerror("Ошибка", "Кол-во столбцов в одной из матриц должно совпадать с кол-ом строк в другой")
+        else:
+            first = []
+            for i in range(self.table_1.rows):
+                for j in range(self.table_1.columns):
+                    first.append(self.table_1.get()[i][j])
+            m1 = nm.array(first, dtype=float).reshape(self.table_1.rows, self.table_1.columns);
+            second = []
+            for i in range(self.table_2.rows):
+                for j in range(self.table_2.columns):
+                    second.append(self.table_2.get()[i][j])
+            m2 = nm.array(second, dtype=float).reshape(self.table_2.rows, self.table_2.columns);
+            result =  (do_mult(m1, m2))
         #result = nm.dot(m1, m2)
-        self.label_result = tk.Label(self, text="Result", font=LARGE_FONT)
-        self.label_result.grid(row=0, column=3, rowspan=3)
-        self.result = TableResult(self, result.shape[0], result.shape[1], result)
-        self.result.grid(row=3, column=3, padx=100)
+            self.label_result = tk.Label(self, text="Result", font=LARGE_FONT)
+            self.label_result.grid(row=0, column=3, rowspan=3)
+            self.result = TableResult(self, result.shape[0], result.shape[1], result)
+            self.result.grid(row=3, column=3, padx=100)
