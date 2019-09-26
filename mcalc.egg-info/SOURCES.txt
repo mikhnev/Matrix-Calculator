@@ -1,0 +1,14 @@
+README.md
+setup.py
+mcalc/Operations.py
+mcalc/Simple_operations.py
+mcalc/SizeChooser.py
+mcalc/Tables.py
+mcalc/TestClass.py
+mcalc/__init__.py
+mcalc/__main__.py
+mcalc/mcalc.py
+mcalc.egg-info/PKG-INFO
+mcalc.egg-info/SOURCES.txt
+mcalc.egg-info/dependency_links.txt
+mcalc.egg-info/top_level.txt

@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: mcalc
+Version: 0.0.1
+Summary: Python3 project for cmc msu course
+Home-page: https://github.com/mikhnev/Matrix-Calculator
+Author: Denis Mikhnev and Vlad Orlov
+Author-email: denis.mikhnev@gmail.com
+License: UNKNOWN
+Description: # Matrix-Calculator
+        Проект предназначен для выполнения основных операций с матрицами: 
+        перемножение, сложение, вычитание, возведение в степень, транспонирование,
+        поиск обратной матрицы, вычисление определителя матрицы.
+        Данные функции вызываются нажатием соответствующей кнопки на стартовой странице.
+        Внутри каждой из этих функций есть возможность задать
+        размеры матриц
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown

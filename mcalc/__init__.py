@@ -1,1 +1,2 @@
-name="mcalc"
+name = "mcalc"
+from mcalc import *
